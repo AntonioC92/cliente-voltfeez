@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoltFeez · Brand Palette & Guidelines</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:       #0A0A0A;
+      --green:       #00E87A;
+      --green-dark:  #00A855;
+      --green-pale:  #E8FFF4;
+      --white:       #FFFFFF;
+      --gray:        #9A9A9A;
+      --dark:        #1A1A1A;
+      --dark2:       #222222;
+      --dark3:       #2C2C2C;
+      --amber:       #F59E0B;
+      --amber-bg:    #1C1500;
+      --red:         #EF4444;
+      --red-bg:      #1C0000;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,232,122,0.2);
+      display: flex; align-items: center; gap: 0;
+      padding: 0 32px;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 18px; letter-spacing: 1px;
+      margin-right: 40px; white-space: nowrap;
+      text-decoration: none;
+    }
+    .nav-logo span:first-child { color: var(--white); }
+    .nav-logo span:last-child  { color: var(--green); }
+    .nav-links { display: flex; gap: 4px; overflow-x: auto; }
+    .nav-links a {
+      color: var(--gray); text-decoration: none;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 8px 14px; border-radius: 4px;
+      white-space: nowrap; transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); background: rgba(0,232,122,0.08); }
+    .nav-badge {
+      margin-left: auto; font-size: 11px; color: var(--gray);
+      white-space: nowrap; display: flex; align-items: center; gap: 6px;
+    }
+    .nav-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); display: inline-block;
+    }
+
+    /* ── LAYOUT ── */
+    main { padding-top: 56px; }
+    section { padding: 80px 0; border-bottom: 1px solid var(--dark2); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── TYPOGRAPHY ── */
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--green); margin-bottom: 8px;
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px; font-weight: 800; color: var(--white);
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .section-desc {
+      color: var(--gray); font-size: 15px; max-width: 640px;
+      margin-bottom: 48px; line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--black);
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--dark2);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--green);
+    }
+    .hero-top {
+      display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(48px, 8vw, 80px); font-weight: 900;
+      letter-spacing: -1px; line-height: 1;
+    }
+    .hero h1 .volt { color: var(--white); }
+    .hero h1 .feez { color: var(--green); }
+    .hero-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      color: var(--gray); text-transform: uppercase; margin-bottom: 24px;
+    }
+    .hero-tagline {
+      font-size: 18px; color: var(--gray); max-width: 520px; line-height: 1.6;
+    }
+    .hero-tagline strong { color: var(--green); }
+    .hero-meta {
+      margin-top: 40px; display: flex; gap: 32px; flex-wrap: wrap;
+    }
+    .hero-chip {
+      background: var(--dark); border: 1px solid var(--dark3);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 12px; color: var(--gray);
+      font-weight: 500; letter-spacing: 0.4px;
+    }
+    .hero-chip strong { color: var(--white); font-weight: 600; }
+
+    /* ── COLOR SWATCHES ── */
+    .swatches-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+    }
+    @media(max-width: 768px) { .swatches-grid { grid-template-columns: repeat(2, 1fr); } }
+    .swatch {
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .swatch:hover { transform: translateY(-3px); }
+    .swatch-block { height: 120px; position: relative; }
+    .swatch-block::after {
+      content: 'Copia';
+      position: absolute; inset: 0; display: flex; align-items: center;
+      justify-content: center; background: rgba(0,0,0,0.4);
+      font-size: 12px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; opacity: 0; transition: opacity 0.2s;
+    }
+    .swatch:hover .swatch-block::after { opacity: 1; }
+    .swatch-info {
+      background: var(--dark); padding: 14px 16px;
+    }
+    .swatch-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 13px; color: var(--white); margin-bottom: 2px;
+    }
+    .swatch-hex {
+      font-family: 'Courier New', monospace;
+      font-size: 13px; color: var(--green); margin-bottom: 6px;
+    }
+    .swatch-role { font-size: 12px; color: var(--gray); }
+    .copied-toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+      background: var(--green); color: var(--black);
+      padding: 10px 24px; border-radius: 100px;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+      z-index: 9999;
+    }
+    .copied-toast.show { opacity: 1; }
+
+    /* ── COLOR RULES ── */
+    .color-rules {
+      margin-top: 40px; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    @media(max-width: 640px) { .color-rules { grid-template-columns: 1fr; } }
+    .rule-card {
+      background: var(--dark); border-radius: 10px;
+      padding: 20px 24px; border-left: 3px solid var(--green);
+    }
+    .rule-card.warn { border-left-color: var(--amber); }
+    .rule-card .rule-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .rule-card .rule-label.ok  { color: var(--green); }
+    .rule-card .rule-label.no  { color: var(--red); }
+    .rule-card .rule-label.warn { color: var(--amber); }
+    .rule-card p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+    .rule-card strong { color: var(--white); }
+
+    /* ── TYPOGRAPHY SECTION ── */
+    .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    @media(max-width: 640px) { .type-grid { grid-template-columns: 1fr; } }
+    .type-card {
+      background: var(--dark); border-radius: 12px; padding: 28px;
+      border: 1px solid var(--dark3);
+    }
+    .type-card-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--green); margin-bottom: 16px;
+    }
+    .type-example { margin-bottom: 16px; }
+    .type-meta { font-size: 12px; color: var(--gray); }
+    .type-meta span { color: var(--white); font-weight: 500; }
+
+    .scale-row {
+      display: flex; align-items: baseline; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid var(--dark2);
+    }
+    .scale-row:last-child { border-bottom: none; }
+    .scale-meta { min-width: 100px; font-size: 12px; color: var(--gray); }
+    .scale-meta strong { display: block; color: var(--white); font-size: 11px; font-weight: 600; margin-bottom: 2px; }
+
+    /* ── VISUAL LANGUAGE ── */
+    .visual-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    @media(max-width: 768px) { .visual-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width: 480px) { .visual-grid { grid-template-columns: 1fr; } }
+    .visual-card {
+      background: var(--dark); border-radius: 10px; padding: 24px;
+      border: 1px solid var(--dark3); transition: border-color 0.2s;
+    }
+    .visual-card:hover { border-color: rgba(0,232,122,0.3); }
+    .visual-icon {
+      width: 40px; height: 40px; background: rgba(0,232,122,0.1);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 18px; margin-bottom: 14px;
+    }
+    .visual-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 700; color: var(--white);
+      margin-bottom: 8px; letter-spacing: 0.3px;
+    }
+    .visual-card p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* ── TONE OF VOICE ── */
+    .tone-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    @media(max-width: 768px) { .tone-split { grid-template-columns: 1fr; } }
+    .tone-panel {
+      background: var(--dark); border-radius: 12px; overflow: hidden;
+    }
+    .tone-header {
+      padding: 20px 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .tone-header.b2b { background: rgba(0,0,0,0.6); border-bottom: 2px solid var(--green); }
+    .tone-header.b2c { background: rgba(0,232,122,0.08); border-bottom: 2px solid var(--green); }
+    .tone-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; background: var(--green); color: var(--black);
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .tone-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px; font-weight: 700; color: var(--white);
+    }
+    .tone-body { padding: 24px; }
+    .tone-target {
+      font-size: 12px; color: var(--gray); margin-bottom: 20px;
+      padding-bottom: 16px; border-bottom: 1px solid var(--dark2);
+    }
+    .tone-target strong { color: var(--white); display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+    .msg-list { list-style: none; margin-bottom: 24px; }
+    .msg-list li {
+      padding: 10px 0; border-bottom: 1px solid var(--dark2);
+      font-size: 14px; color: var(--white); font-weight: 500;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .msg-list li::before {
+      content: '→'; color: var(--green); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .tone-rules-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gray); margin-bottom: 12px;
+    }
+    .tone-rules { list-style: none; }
+    .tone-rules li {
+      font-size: 13px; color: var(--gray); padding: 6px 0;
+      display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+    }
+    .tone-rules li::before { content: '·'; color: var(--green); font-weight: 900; flex-shrink: 0; }
+
+    /* ── TONE MATRIX ── */
+    .matrix-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--dark3);
+    }
+    @media(max-width: 640px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
+    .matrix-cell {
+      background: var(--dark); padding: 24px 20px;
+      border-right: 1px solid var(--dark3);
+    }
+    .matrix-cell:last-child { border-right: none; }
+    .matrix-cell h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px; font-weight: 800; color: var(--green);
+      margin-bottom: 10px; letter-spacing: 0.5px;
+    }
+    .matrix-cell p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* ── TAGLINE BOX ── */
+    .tagline-box {
+      background: var(--dark); border-radius: 12px; padding: 40px;
+      border-left: 4px solid var(--green); margin-top: 32px;
+      text-align: center;
+    }
+    .tagline-box blockquote {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(18px, 3vw, 26px); font-weight: 700;
+      line-height: 1.4;
+    }
+    .tagline-box blockquote .green { color: var(--green); }
+    .tagline-box .tag-note {
+      margin-top: 12px; font-size: 13px; color: var(--gray);
+    }
+
+    /* ── DO / DON'T ── */
+    .dodo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media(max-width: 640px) { .dodo-grid { grid-template-columns: 1fr; } }
+    .dodo-col h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 2px solid;
+    }
+    .dodo-col.do h3   { color: var(--green); border-color: var(--green); }
+    .dodo-col.dont h3 { color: var(--red); border-color: var(--red); }
+    .dodo-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 0; border-bottom: 1px solid var(--dark2);
+    }
+    .dodo-item:last-child { border-bottom: none; }
+    .dodo-icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .do .dodo-icon   { background: rgba(0,232,122,0.15); color: var(--green); }
+    .dont .dodo-icon { background: rgba(239,68,68,0.15); color: var(--red); }
+    .dodo-text strong { display: block; font-size: 13px; color: var(--white); margin-bottom: 2px; }
+    .dodo-text span   { font-size: 12px; color: var(--gray); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px;
+      border-top: 1px solid rgba(0,232,122,0.2);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer .foot-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 16px;
+    }
+    footer .foot-logo span:first-child { color: var(--white); }
+    footer .foot-logo span:last-child  { color: var(--green); }
+    footer p { font-size: 12px; color: var(--gray); }
+  </style>
+</head>
+<body>
+
+  <!-- TOAST -->
+  <div class="copied-toast" id="toast">Copiato ✓</div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero"><span>VOLT</span><span>FEEZ</span></a>
+    <div class="nav-links">
+      <a href="#colori">Colori</a>
+      <a href="#tipografia">Tipografia</a>
+      <a href="#visivo">Visivo</a>
+      <a href="#tono">Tono di Voce</a>
+      <a href="#dodo">Do & Don't</a>
+    </div>
+    <div class="nav-badge">Brand Palette · Fase 1</div>
+  </nav>
+
+  <main>
+
+    <!-- ═══ HERO ═══════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-sub">Powerbank Rental · Messina · Brand Guidelines</div>
+        <h1 class="hero-top">
+          <span class="volt">VOLT</span><span class="feez">FEEZ</span>
+        </h1>
+        <p class="hero-tagline">
+          Questa pagina è il <strong>riferimento operativo del brand</strong>. Contiene colori, font, tono di voce e regole d'uso. Da consultare ogni volta che si producono materiali visivi, testi o comunicazioni digitali.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-chip">Versione <strong>1.0 · Giugno 2026</strong></div>
+          <div class="hero-chip">Preparato da <strong>Caruso Martech</strong></div>
+          <div class="hero-chip">Target <strong>B2B + B2C · Messina</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ COLORI ═══════════════════════════════════════════ -->
+    <section id="colori">
+      <div class="container">
+        <div class="section-label">01 · Palette Colori</div>
+        <h2>I Colori del Brand</h2>
+        <p class="section-desc">Cinque colori, nessuno in più. Fare clic su un colore per copiare il codice hex. La palette nasce dark-first: ogni materiale si costruisce partendo dallo sfondo scuro.</p>
+
+        <div class="swatches-grid">
+          <div class="swatch" onclick="copyHex('#0A0A0A', this)">
+            <div class="swatch-block" style="background:#0A0A0A; border-bottom:1px solid #222;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">VoltBlack</div>
+              <div class="swatch-hex">#0A0A0A</div>
+              <div class="swatch-role">Background principale</div>
+            </div>
+          </div>
+          <div class="swatch" onclick="copyHex('#00E87A', this)">
+            <div class="swatch-block" style="background:#00E87A;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">VoltGreen</div>
+              <div class="swatch-hex">#00E87A</div>
+              <div class="swatch-role">Accento primario · CTA</div>
+            </div>
+          </div>
+          <div class="swatch" onclick="copyHex('#FFFFFF', this)">
+            <div class="swatch-block" style="background:#FFFFFF;"></div>
+            <div class="swatch-info" style="background:#111;">
+              <div class="swatch-name">White</div>
+              <div class="swatch-hex">#FFFFFF</div>
+              <div class="swatch-role">Testo primario su scuro</div>
+            </div>
+          </div>
+          <div class="swatch" onclick="copyHex('#9A9A9A', this)">
+            <div class="swatch-block" style="background:#9A9A9A;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">VoltGray</div>
+              <div class="swatch-hex">#9A9A9A</div>
+              <div class="swatch-role">Testo secondario · Metadati</div>
+            </div>
+          </div>
+          <div class="swatch" onclick="copyHex('#1A1A1A', this)">
+            <div class="swatch-block" style="background:#1A1A1A; border:1px solid #2C2C2C;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">VoltDark</div>
+              <div class="swatch-hex">#1A1A1A</div>
+              <div class="swatch-role">Card · Surface · Layer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="color-rules" style="margin-top:40px;">
+          <div class="rule-card">
+            <div class="rule-label ok">✓ Regola base</div>
+            <p><strong>VoltBlack come background</strong>, VoltGreen come unico accento, White per testi su scuro, VoltGray per testi secondari e disclaimer.</p>
+          </div>
+          <div class="rule-card">
+            <div class="rule-label ok">✓ Gerarchia visiva</div>
+            <p>Bianco per le informazioni principali, VoltGray per le note. <strong>Il verde non è mai testo normale</strong>, è sempre un elemento di enfasi o azione.</p>
+          </div>
+          <div class="rule-card warn">
+            <div class="rule-label warn">⚠ Attenzione</div>
+            <p>Il verde (#00E87A) è il colore di accento primario, <strong>da usare esclusivamente per CTA, highlights e accenti</strong>. Mai come background esteso su aree ampie.</p>
+          </div>
+          <div class="rule-card" style="border-left-color: var(--red);">
+            <div class="rule-label no">✗ Non fare</div>
+            <p>Non aggiungere colori extra alla palette base. <strong>Nessuna sfumatura, nessuna versione luminosa del verde</strong>. La purezza cromatica è parte del posizionamento premium.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TIPOGRAFIA ═══════════════════════════════════════ -->
+    <section id="tipografia">
+      <div class="container">
+        <div class="section-label">02 · Tipografia</div>
+        <h2>Font e Scale</h2>
+        <p class="section-desc">Due famiglie tipografiche per due ruoli distinti. Montserrat per impatto visivo e identità, Inter per leggibilità nel corpo del testo.</p>
+
+        <div class="type-grid">
+          <div class="type-card">
+            <div class="type-card-label">Headline · Titoli · Brand</div>
+            <div class="type-example">
+              <div style="font-family:'Montserrat',sans-serif; font-size:38px; font-weight:900; letter-spacing:-0.5px; line-height:1.1; color:#fff;">Porta VoltFeez<br><span style="color:#00E87A;">nel tuo locale.</span></div>
+            </div>
+            <div class="type-meta">
+              Font: <span>Montserrat ExtraBold / Black</span><br>
+              Peso: <span>800 – 900</span><br>
+              Uso: <span>Homepage hero, poster, titoli sezione</span>
+            </div>
+          </div>
+          <div class="type-card">
+            <div class="type-card-label">Body · Testi · UI</div>
+            <div class="type-example">
+              <div style="font-family:'Inter',sans-serif; font-size:16px; font-weight:400; color:#ccc; line-height:1.7;">Nessun investimento iniziale. Revenue share del 20% su ogni noleggio. La station è self-service e non richiede personale dedicato.</div>
+            </div>
+            <div class="type-meta">
+              Font: <span>Inter Regular / Medium</span><br>
+              Peso: <span>400 – 500</span><br>
+              Uso: <span>Testi sito, caption, email, post</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 32px; background: var(--dark); border-radius: 12px; padding: 32px; border: 1px solid var(--dark3);">
+          <div class="section-label" style="margin-bottom: 24px;">Scala Tipografica</div>
+          <div class="scale-row">
+            <div class="scale-meta"><strong>H1 · Hero</strong>48 – 80px · 900</div>
+            <div style="font-family:'Montserrat',sans-serif; font-size:clamp(28px,5vw,52px); font-weight:900; color:#fff; letter-spacing:-0.5px;">Stay Charged.</div>
+          </div>
+          <div class="scale-row">
+            <div class="scale-meta"><strong>H2 · Sezione</strong>32 – 40px · 800</div>
+            <div style="font-family:'Montserrat',sans-serif; font-size:clamp(22px,4vw,38px); font-weight:800; color:#fff;">Per i locali di Messina</div>
+          </div>
+          <div class="scale-row">
+            <div class="scale-meta"><strong>H3 · Sottotitolo</strong>20 – 24px · 700</div>
+            <div style="font-family:'Montserrat',sans-serif; font-size:22px; font-weight:700; color:#fff;">Come funziona la station</div>
+          </div>
+          <div class="scale-row">
+            <div class="scale-meta"><strong>Body</strong>15 – 16px · 400</div>
+            <div style="font-family:'Inter',sans-serif; font-size:16px; font-weight:400; color:#ccc;">La batteria scarica interrompe pagamenti, mappe e socialità.</div>
+          </div>
+          <div class="scale-row">
+            <div class="scale-meta"><strong>Label / Tag</strong>10 – 12px · 700</div>
+            <div style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#00E87A;">POWERBANK RENTAL · MESSINA</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ LINGUAGGIO VISIVO ════════════════════════════════ -->
+    <section id="visivo">
+      <div class="container">
+        <div class="section-label">03 · Linguaggio Visivo</div>
+        <h2>Regole Visive</h2>
+        <p class="section-desc">Il brand nasce dalla presentazione partner premium. Ogni elemento grafico deve rispettare queste regole per mantenere coerenza e impatto visivo.</p>
+
+        <div class="visual-grid">
+          <div class="visual-card">
+            <div class="visual-icon">🌑</div>
+            <h4>Dark Mode Nativo</h4>
+            <p>Il brand nasce su sfondo scuro, non è un'opzione. Tutti i materiali principali partono da #0A0A0A.</p>
+          </div>
+          <div class="visual-card">
+            <div class="visual-icon">📸</div>
+            <h4>Fotografia Venue</h4>
+            <p>Ambienti serali, tonalità moody scure, luce verde ambiente. Locali autentici di Messina, non stock generici.</p>
+          </div>
+          <div class="visual-card">
+            <div class="visual-icon">⚡</div>
+            <h4>Numeri in Verde</h4>
+            <p>Statistiche e KPI grandi in #00E87A per massimo impatto visivo immediato. Es: "20%", "3 min", "100%".</p>
+          </div>
+          <div class="visual-card">
+            <div class="visual-icon">▬</div>
+            <h4>Linea Verde Separatrice</h4>
+            <p>Linea orizzontale corta in verde come separatore tra sezioni. Signature element del brand da replicare ovunque.</p>
+          </div>
+          <div class="visual-card">
+            <div class="visual-icon">⬜</div>
+            <h4>Layout Split 50/50</h4>
+            <p>Testo a sinistra, visual o statistica a destra. Schema ricorrente nella presentazione premium da usare anche nel sito.</p>
+          </div>
+          <div class="visual-card">
+            <div class="visual-icon">○</div>
+            <h4>Whitespace Generoso</h4>
+            <p>Mai sovraffollato, sempre premium. Spazio bianco abbondante tra gli elementi segnala qualità e confidence.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 32px; background: var(--dark); border-radius: 12px; padding: 32px; border: 1px solid rgba(0,232,122,0.15);">
+          <div class="section-label" style="margin-bottom: 20px;">Preview · Combinazione Tipo</div>
+          <div style="display:flex; align-items:center; gap: 24px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:240px;">
+              <div style="font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; color:#00E87A; text-transform:uppercase; margin-bottom:8px;">Per gli esercenti</div>
+              <div style="height:2px; width:32px; background:#00E87A; margin-bottom:16px;"></div>
+              <div style="font-family:'Montserrat',sans-serif; font-size:26px; font-weight:900; color:#fff; line-height:1.2; margin-bottom:12px;">Zero costi.<br>Guadagni dal primo noleggio.</div>
+              <div style="font-family:'Inter',sans-serif; font-size:14px; color:#9A9A9A; line-height:1.6;">Self-service completo. Revenue share del 20% su ogni noleggio effettuato nella tua location.</div>
+            </div>
+            <div style="flex:0; display:flex; flex-direction:column; align-items:center; gap:8px; padding: 20px 32px; background:#111; border-radius:10px; border:1px solid #222;">
+              <div style="font-family:'Montserrat',sans-serif; font-size:48px; font-weight:900; color:#00E87A; line-height:1;">20%</div>
+              <div style="font-family:'Inter',sans-serif; font-size:12px; color:#9A9A9A; text-align:center;">revenue share<br>garantito</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TONO DI VOCE ═════════════════════════════════════ -->
+    <section id="tono">
+      <div class="container">
+        <div class="section-label">04 · Tono di Voce</div>
+        <h2>Come Parla VoltFeez</h2>
+        <p class="section-desc">Due target, due toni. La comunicazione B2B verso gli esercenti non è mai intercambiabile con quella B2C verso gli utenti finali.</p>
+
+        <div style="margin-bottom: 32px;">
+          <div class="matrix-grid">
+            <div class="matrix-cell">
+              <h4>DIRETTO</h4>
+              <p>Messaggi brevi, niente giri di parole. Il beneficio prima della feature.</p>
+            </div>
+            <div class="matrix-cell">
+              <h4>TECH-PREMIUM</h4>
+              <p>Non accademico, non popolare. Moderno, preciso, sicuro di sé.</p>
+            </div>
+            <div class="matrix-cell">
+              <h4>WIN-WIN</h4>
+              <p>Sempre due benefici: il locale guadagna, il cliente rimane connesso.</p>
+            </div>
+            <div class="matrix-cell" style="border-right:none;">
+              <h4>LOCALE</h4>
+              <p>Radicato a Messina, ma con ambizione scalabile. Non provinciale.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tone-split">
+          <!-- B2B -->
+          <div class="tone-panel">
+            <div class="tone-header b2b">
+              <span class="tone-tag">B2B</span>
+              <span class="tone-title">Verso gli esercenti</span>
+            </div>
+            <div class="tone-body">
+              <div class="tone-target">
+                <strong>Target</strong>
+                Bar, ristoranti, hotel, lidi, discoteche, palestre, centri commerciali di Messina e territorio
+              </div>
+              <ul class="msg-list">
+                <li>"Nessun investimento iniziale"</li>
+                <li>"Revenue share del 20% sul noleggio"</li>
+                <li>"Self-service: zero operatività richiesta"</li>
+                <li>"Il cliente resta più a lungo"</li>
+                <li>"Porta un servizio premium nel tuo locale"</li>
+              </ul>
+              <div class="tone-rules-label">Regole del tono</div>
+              <ul class="tone-rules">
+                <li>Da professionista a professionista: rispettoso, diretto, mai condiscendente</li>
+                <li>Benefit prima della feature: prima il vantaggio economico, poi la tecnologia</li>
+                <li>No gergo tecnico: "station" sì, "IoT smart device" no</li>
+                <li>Urgency locale: Messina è ancora un mercato raro, arrivare prima è un vantaggio reale</li>
+              </ul>
+            </div>
+          </div>
+          <!-- B2C -->
+          <div class="tone-panel">
+            <div class="tone-header b2c">
+              <span class="tone-tag">B2C</span>
+              <span class="tone-title">Verso gli utenti</span>
+            </div>
+            <div class="tone-body">
+              <div class="tone-target">
+                <strong>Target</strong>
+                Turisti, residenti, visitatori a Messina: chi usa lo smartphone fuori casa per pagamenti, mappe, social, contenuti
+              </div>
+              <ul class="msg-list">
+                <li>"Noleggio in pochi secondi"</li>
+                <li>"Scansiona QR, ritira, usa, riconsegna"</li>
+                <li>"Senza cavi: connettori integrati"</li>
+                <li>"Pagamento digitale, nessun contante"</li>
+                <li>"Dove sei tu, c'è VoltFeez"</li>
+              </ul>
+              <div class="tone-rules-label">Regole del tono</div>
+              <ul class="tone-rules">
+                <li>Rapido e immediato, mobile-first per definizione</li>
+                <li>Emozionale ma pratico: connessione = libertà di vivere l'esperienza</li>
+                <li>Pochi testi, molto visual: video UGC, Stories, Reels, demo veloci</li>
+                <li>Friendly ma non infantile: brand premium, non low-cost</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tagline-box">
+          <blockquote>
+            <span class="green">"Il cliente resta connesso.</span><br>
+            Il locale resta competitivo."
+          </blockquote>
+          <p class="tag-note">Firma B2B da usare in chiusura di ogni comunicazione verso gli esercenti: post, email, sito, brochure.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DO & DON'T ══════════════════════════════════════ -->
+    <section id="dodo">
+      <div class="container">
+        <div class="section-label">05 · Do &amp; Don't</div>
+        <h2>Regole Pratiche</h2>
+        <p class="section-desc">Cosa fare e cosa evitare quando si producono materiali VoltFeez. Valido per testi, grafica, social, sito.</p>
+
+        <div class="dodo-grid">
+          <div class="dodo-col do">
+            <h3>✓ Fare</h3>
+            <div class="dodo-item">
+              <div class="dodo-icon">✓</div>
+              <div class="dodo-text">
+                <strong>Usare sempre sfondo scuro come base</strong>
+                <span>#0A0A0A o #1A1A1A come punto di partenza per tutti i materiali principali.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✓</div>
+              <div class="dodo-text">
+                <strong>VoltGreen solo su CTA, highlight e accenti</strong>
+                <span>Bottoni, link, numeri chiave, icone, separatori, label di categoria.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✓</div>
+              <div class="dodo-text">
+                <strong>Separare sempre B2B da B2C</strong>
+                <span>Tono, messaggi e CTA devono essere pensati per il target specifico, mai mescolati.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✓</div>
+              <div class="dodo-text">
+                <strong>Montserrat per titoli, Inter per testi</strong>
+                <span>La coppia tipografica è fissa. Montserrat pesante per impatto, Inter per leggibilità.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✓</div>
+              <div class="dodo-text">
+                <strong>La linea verde come separatore sezione</strong>
+                <span>Due pixel, verde #00E87A, larghezza breve. Signature visiva del brand da replicare ovunque.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✓</div>
+              <div class="dodo-text">
+                <strong>Logo sempre su sfondo scuro</strong>
+                <span>Il logo è progettato per il nero. Su sfondi chiari usare la variante positiva concordata.</span>
+              </div>
+            </div>
+          </div>
+          <div class="dodo-col dont">
+            <h3>✗ Non Fare</h3>
+            <div class="dodo-item">
+              <div class="dodo-icon">✗</div>
+              <div class="dodo-text">
+                <strong>Non usare verde come sfondo esteso</strong>
+                <span>Il verde su grandi superfici distrugge il posizionamento premium. Solo come accento.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✗</div>
+              <div class="dodo-text">
+                <strong>Non aggiungere colori extra alla palette</strong>
+                <span>Nessun blu, arancio, lilla o variazione. La purezza cromatica è parte del brand.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✗</div>
+              <div class="dodo-text">
+                <strong>Non usare sfumature del verde</strong>
+                <span>Nessun gradient, nessuna versione più chiara o più scura. Solo #00E87A piatto.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✗</div>
+              <div class="dodo-text">
+                <strong>Non usare gergo tecnico nel B2B locale</strong>
+                <span>"Station" è accettato, "IoT smart device" o "ecosystem" no. Il target è un esercente, non un CTO.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✗</div>
+              <div class="dodo-text">
+                <strong>Non usare foto stock generiche</strong>
+                <span>Nessuna foto di persone felici con smartphone in luoghi anonimi. Venue reali, atmosfera moody.</span>
+              </div>
+            </div>
+            <div class="dodo-item">
+              <div class="dodo-icon">✗</div>
+              <div class="dodo-text">
+                <strong>Non sovraffollare i layout</strong>
+                <span>Whitespace abbondante. Se sembra troppo vuoto, va bene. Se è pieno, è troppo.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="foot-logo"><span>VOLT</span><span>FEEZ</span></div>
+      <p style="margin-top:4px;">Powerbank Rental · Messina</p>
+    </div>
+    <p>Brand Palette v1.0 · Fase 1 · Giugno 2026<br>Caruso Martech · caruso.martech@gmail.com</p>
+  </footer>
+
+  <script>
+    function copyHex(hex, el) {
+      navigator.clipboard.writeText(hex).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = hex + ' copiato ✓';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    }
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 80) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--green)' : '';
+        a.style.background = a.getAttribute('href') === '#' + current ? 'rgba(0,232,122,0.08)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
